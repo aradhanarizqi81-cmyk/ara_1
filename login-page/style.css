@@ -1,0 +1,234 @@
+:root {
+  --red: #970808e0;
+  --card: #ffffff;
+  --muted: #9aa3b2;
+  --accent: #2f79ff;
+  --pill-shadow: rgba(0, 0, 0, 0.12);
+  --glass-shadow: 0 18px 40px rgba(13, 38, 77, 0.25);
+}
+
+* {
+  box-sizing: border-box;
+}
+body,
+html {
+  height: 100%;
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  /* bookshelf background with dark overlay to keep text readable */
+  background: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)),
+    url("assets/images/rakbuku.jpg") no-repeat center/cover;
+  color: #fff;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48px;
+  gap: 40px;
+}
+
+.left {
+  flex: 1;
+  max-width: 840px;
+  padding: 48px 64px;
+  position: relative;
+}
+.logo {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  color: #e6f0ff;
+}
+.hero-title {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  font-size: 30px;
+  margin: 28px 0 12px;
+}
+.hero-sub {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 20px;
+  margin-bottom: 18px;
+}
+.view-perks {
+  display: inline-block;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  margin-bottom: 42px;
+}
+.pills {
+  position: absolute;
+  left: 72px;
+  bottom: -115px; /* moved down to avoid overlapping hero text */
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.pill {
+  min-width: 220px;
+  padding: 18px 26px;
+  border-radius: 48px;
+  box-shadow: 0 6px 18px var(--pill-shadow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-family: "Montserrat", sans-serif;
+}
+.p1 {
+  background: #faf8f8;
+  color: #631414;
+}
+.p2 {
+  background: #faf8f8;
+  color: #631414;
+  align-self: flex-start;
+  transform: translateX(-4px);
+}
+.p3 {
+  background: #faf8f8;
+  color: #631414;
+  align-self: flex-end;
+  transform: translateX(-4px);
+}
+
+.right {
+  width: 420px;
+  max-width: 96%;
+}
+.card {
+  background: var(--card);
+  border-radius: 12px;
+  padding: 28px;
+  box-shadow: var(--glass-shadow);
+  color: #111827;
+}
+.card h1 {
+  margin: 6px 0 18px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 32px;
+  text-align: center;
+  font-weight: 700;
+}
+.google-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid #e6e9ef;
+  border-radius: 8px;
+  padding: 10px 12px;
+  justify-content: center;
+  cursor: pointer;
+  background: transparent;
+  font-weight: 600;
+  color: #2b2b2b;
+  width: 100%;
+}
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 18px 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+.divider::before,
+.divider::after {
+  content: "";
+  height: 1px;
+  background: #e9edf3;
+  flex: 1;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.input {
+  border-radius: 10px;
+  padding: 14px;
+  border: 1px solid #e9edf3;
+  background: #fff;
+  outline: none;
+  font-size: 15px;
+  color: #111;
+}
+.input::placeholder {
+  color: #b7c1cc;
+  font-weight: 500;
+}
+.subline {
+  text-align: right;
+  font-size: 13px;
+  margin-top: 6px;
+}
+.email-subline {
+  text-align: center;
+  color: #6b7280;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+.subline a {
+  color: #2f79ff;
+  text-decoration: none;
+  font-weight: 600;
+}
+.login-btn {
+  margin-top: 8px;
+  width: 100%;
+  padding: 12px 18px;
+  border-radius: 8px;
+  background: linear-gradient(180deg, var(--accent), #1e63f0);
+  color: #fff;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 16px;
+}
+.signup {
+  text-align: center;
+  margin-top: 14px;
+  color: #6b7280;
+  font-size: 14px;
+}
+.signup a {
+  color: #2f79ff;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+@media (max-width: 900px) {
+  .wrap {
+    flex-direction: column;
+    padding: 32px;
+  }
+  .left {
+    order: 2;
+    padding: 24px 18px;
+    max-width: 100%;
+  }
+  .right {
+    order: 1;
+    width: 100%;
+  }
+  .pills {
+    left: 24px;
+    bottom: 24px;
+  }
+  .hero-title {
+    font-size: 32px;
+  }
+}
+/* small utility for centered content boxes if needed */
+.content {
+  background: rgba(0, 0, 0, 0.45);
+  padding: 30px 50px;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+  color: #fff;
+}
