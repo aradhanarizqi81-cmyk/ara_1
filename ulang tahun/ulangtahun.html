@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Selamat Ulang Tahun ❤️</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: linear-gradient(180deg, #ffdde1, #ee9ca7);
+      height: 100vh;
+      overflow: hidden;
+      color: #333;
+    }
+
+    @keyframes textFade {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-text {
+      animation: textFade 1s ease forwards;
+    }
+
+    h1, p {
+      font-weight: 600;
+      opacity: 0;
+    }
+
+    .screen.active h1,
+    .screen.active p {
+      animation: textFade 1s ease forwards;
+    }
+
+    .screen {
+      width: 100vw;
+      height: 100vh;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+      padding: 24px;
+    }
+
+    .screen.active { display: flex; }
+
+    h1 {
+      font-size: 2.2rem;
+      margin-bottom: 12px;
+      color: #b83280;
+    }
+
+    p {
+      font-size: 1.05rem;
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+
+    button {
+      padding: 14px 28px;
+      border: none;
+      border-radius: 999px;
+      background: #b83280;
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      z-index: 2;
+    }
+
+    .btn-final {
+      margin-top: 20px;
+    }
+
+    button:active { transform: scale(0.96); }
+
+    .gift {
+      width: 180px;
+      height: 180px;
+      background: #ff6fae;
+      border-radius: 16px;
+      position: relative;
+      margin-bottom: 24px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      cursor: pointer;
+      overflow: hidden;
+    }
+
+    .gift::before {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 100%;
+      background: #fff;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .gift::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 20px;
+      background: #fff;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .string {
+      position: absolute;
+      top: -40px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 4px;
+      height: 60px;
+      background: #fff;
+      border-radius: 2px;
+    }
+
+    .pull {
+      animation: pullString 0.6s ease forwards;
+    }
+
+    @keyframes pullString {
+      to {
+        transform: translateX(-50%) translateY(40px);
+        opacity: 0;
+      }
+    }
+
+    .gift::before {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 100%;
+      background: #fff;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .gift::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 20px;
+      background: #fff;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .photos {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      width: 100%;
+      max-width: 360px;
+      margin-bottom: 20px;
+    }
+
+    .photos img {
+      width: 100%;
+      border-radius: 12px;
+      object-fit: cover;
+      aspect-ratio: 1 / 1;
+      opacity: 0;
+      transform: translateY(12px);
+      animation: fadeUp 0.8s ease forwards;
+    }
+
+    .photos img:nth-child(1) { animation-delay: 0.2s; }
+    .photos img:nth-child(2) { animation-delay: 0.5s; }
+    .photos img:nth-child(3) { animation-delay: 0.8s; }
+    .photos img:nth-child(4) { animation-delay: 1.1s; }
+
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Film roll style */
+    .film-container {
+      width: 100%;
+      overflow: hidden;
+      margin-bottom: 12px;
+    }
+
+    .film-strip {
+      display: flex;
+      gap: 14px;
+      animation: rollFilm 35s linear infinite;
+    }
+
+    .film-strip img {
+      width: 160px;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 10px;
+      border: 6px solid #222;
+      background: #222;
+      opacity: 0;
+      animation: filmFade 1s ease forwards;
+    }
+
+    .film-strip img:nth-child(1) { animation-delay: 0.2s; }
+    .film-strip img:nth-child(2) { animation-delay: 0.5s; }
+    .film-strip img:nth-child(3) { animation-delay: 0.8s; }
+    .film-strip img:nth-child(4) { animation-delay: 1.1s; }
+    .film-strip img:nth-child(5) { animation-delay: 1.4s; }
+    .film-strip img:nth-child(6) { animation-delay: 1.7s; }
+
+    @keyframes filmFade {
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes rollFilm {
+      from {
+        transform: translateX(0);
+      }
+      to {
+        transform: translateX(-50%);
+      }
+    }
+      to {
+        transform: translateX(-50%);
+      }
+      to {
+        transform: translateX(-50%);
+      }
+
+    .photos img {
+      width: 100%;
+      border-radius: 12px;
+      object-fit: cover;
+      aspect-ratio: 1 / 1;
+    }
+
+    .footer {
+      font-size: 0.9rem;
+      opacity: 0.8;
+    }
+      
+    /* Falling hearts background */
+    .hearts {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .heart {
+      position: absolute;
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 18px;
+      animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(-10vh) scale(1);
+        opacity: 0;
+      }
+      10% { opacity: 1; }
+      100% {
+        transform: translateY(110vh) scale(1.2);
+        opacity: 0;
+      }
+    }
+
+    .screen {
+      position: relative;
+      z-index: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background Music -->
+  <audio id="bgMusic" src="TULUS - Monokrom (Official Music Video) [QqJ-Vp8mvbk].mp3" preload="auto"></audio>
+
+  <!-- Falling Hearts -->
+  <div class="hearts" id="hearts"></div>
+
+  <!-- Screen 1 -->
+  <div class="screen active" id="screen1">
+    <h1>Selamat Ulang Tahun 🎉</h1>
+    <p>
+      Untuk seseorang yang paling berarti di hidupku,<br />
+      <strong>Firda Putri Aulia</strong>.
+    </p>
+    <button onclick="nextScreen(2)">Mulai</button>
+  </div>
+
+  <!-- Screen 2 -->
+  <div class="screen" id="screen2">
+    <p>
+      Hari ini bukan sekadar hari bertambahnya usia,<br />
+      tapi pengingat bahwa aku sangat bersyukur<br />
+      pernah dan masih bisa berjalan bersamamu.
+    </p>
+    <button onclick="nextScreen(3)">Lanjut</button>
+  </div>
+
+  <!-- Screen 3 -->
+  <div class="screen" id="screen3">
+    <h1>Ada Kado Buat Kamu 🎁</h1>
+    <div class="gift" onclick="openGift()">
+      <div class="string" id="string"></div>
+    </div>
+    <p>Klik kado ini ya</p>
+  </div>
+
+  <!-- Screen 4 -->
+  <div class="screen" id="screen4">
+    <h1>Kenangan Kita 🤍</h1>
+    <div class="film-container">
+      <div class="film-strip">
+        <!-- Set 1 -->
+        <img src="sayang1.jpeg" alt="Kenangan 1" />
+        <img src="sayang2.jpeg" alt="Kenangan 2" />
+        <img src="sayang3.jpeg" alt="Kenangan 3" />
+        <img src="sayang4.jpeg" alt="Kenangan 4" />
+        <img src="sayang5.jpeg" alt="Kenangan 5" />
+        <img src="sayang6.jpeg" alt="Kenangan 6" />
+        <img src="sayang7.jpeg" alt="Kenangan 7" />
+        <img src="sayang8.jpeg" alt="Kenangan 8" />
+        <img src="sayang9.jpeg" alt="Kenangan 9" />
+        <img src="sayang10.jpeg" alt="Kenangan 10" />
+
+        <!-- Set 2 (duplicate for seamless loop) -->
+         <img src="sayang1.jpeg" alt="Kenangan 1" />
+        <img src="sayang2.jpeg" alt="Kenangan 2" />
+        <img src="sayang3.jpeg" alt="Kenangan 3" />
+        <img src="sayang4.jpeg" alt="Kenangan 4" />
+        <img src="sayang5.jpeg" alt="Kenangan 5" />
+        <img src="sayang6.jpeg" alt="Kenangan 6" />
+        <img src="sayang7.jpeg" alt="Kenangan 7" />
+        <img src="sayang8.jpeg" alt="Kenangan 8" />
+        <img src="sayang9.jpeg" alt="Kenangan 9" />
+        <img src="sayang10.jpeg" alt="Kenangan 10" />>
+      </div>
+    </div>
+    </div>
+    <button onclick="nextScreen(5)" class="btn-final">Pesan Terakhir</button>
+  </div>
+
+  <!-- Screen 5 -->
+  <div class="screen" id="screen5">
+    <p>
+      Semoga di usia barumu ini,<br />
+      kamu selalu dikelilingi hal-hal baik,<br />
+      mimpi-mimpimu satu per satu menemukan jalannya,
+      dan senyummu tidak pernah kehilangan alasannya.
+    </p>
+    <p>
+      Terima kasih sudah menjadi kamu.<br />
+      Aku sayang kamu, hari ini, besok, dan seterusnya.
+    </p>
+    <div class="footer">— Dari pasanganmu ❤️</div>
+  </div>
+
+  <script>
+    function nextScreen(n) {
+      document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+      document.getElementById('screen' + n).classList.add('active');
+    }
+
+    function openGift() {
+      const string = document.getElementById('string');
+      const music = document.getElementById('bgMusic');
+      string.classList.add('pull');
+      music.volume = 0.5;
+      music.play().catch(() => {});
+      setTimeout(() => nextScreen(4), 500);
+    }
+  
+    // Falling hearts generator
+    const heartsContainer = document.getElementById('hearts');
+    const heartSymbols = ['❤','💖','💗','💕'];
+
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.innerText = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.fontSize = (14 + Math.random() * 20) + 'px';
+      heart.style.animationDuration = (6 + Math.random() * 6) + 's';
+      heart.style.opacity = Math.random();
+
+      heartsContainer.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 12000);
+    }
+
+    setInterval(createHeart, 500);
+  </script>
+
+</body>
+</html>
